@@ -56,6 +56,7 @@
             this.labelTactile = new System.Windows.Forms.Label();
             this.labelID2 = new System.Windows.Forms.Label();
             this.textBoxID2 = new System.Windows.Forms.TextBox();
+            this.buttonCalibration = new System.Windows.Forms.Button();
             this.panelSerial.SuspendLayout();
             this.panelStart.SuspendLayout();
             this.panelStart2.SuspendLayout();
@@ -119,6 +120,7 @@
             // 
             // panelStart
             // 
+            this.panelStart.Controls.Add(this.buttonCalibration);
             this.panelStart.Controls.Add(this.comboBoxSpatial);
             this.panelStart.Controls.Add(this.labelSpatial);
             this.panelStart.Controls.Add(this.comboBoxBlock);
@@ -334,11 +336,21 @@
             this.textBoxID2.Size = new System.Drawing.Size(77, 25);
             this.textBoxID2.TabIndex = 35;
             // 
+            // buttonCalibration
+            // 
+            this.buttonCalibration.Location = new System.Drawing.Point(206, 66);
+            this.buttonCalibration.Name = "buttonCalibration";
+            this.buttonCalibration.Size = new System.Drawing.Size(85, 23);
+            this.buttonCalibration.TabIndex = 39;
+            this.buttonCalibration.Text = "Calibration";
+            this.buttonCalibration.UseVisualStyleBackColor = true;
+            this.buttonCalibration.Click += new System.EventHandler(this.buttonCalibration_Click);
+            // 
             // ExpManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 275);
+            this.ClientSize = new System.Drawing.Size(404, 310);
             this.Controls.Add(this.panelStart2);
             this.Controls.Add(this.panelStart);
             this.Controls.Add(this.panelSerial);
@@ -382,6 +394,7 @@
         private System.Windows.Forms.Label labelTactile;
         private System.Windows.Forms.Label labelID2;
         private System.Windows.Forms.TextBox textBoxID2;
+        private System.Windows.Forms.Button buttonCalibration;
     }
 }
 

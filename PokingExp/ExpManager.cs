@@ -134,5 +134,13 @@ namespace PokingExp
                 secProgram.Focus();
             }
         }
+
+        private void buttonCalibration_Click(object sender, EventArgs e)
+        {
+            Calibration calibProgram = new Calibration();
+            calibProgram.setCalibration(serialPort1);
+            calibProgram.Show();
+            calibProgram.Focus();
+        }
     }
 }
