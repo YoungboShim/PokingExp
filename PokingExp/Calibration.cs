@@ -51,9 +51,10 @@ namespace PokingExp
             }
         }
 
-        public void setCalibration(SerialPort serialPort)
+        public void setCalibration(SerialPort serialPort, String logId)
         {
             serialPort1 = serialPort;
+            textBoxFilename.Text = logId;
         }
 
         private void tipDown(int moduleIdx)

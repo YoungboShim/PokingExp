@@ -66,7 +66,7 @@ namespace PokingExp
         int patternNum = 4;
         int repeatNum = 12;
         int conditionNum;
-        int depth = 20;
+        float depth = 1.5f;
         int duration = 250;
         int pullDuration = 100;
         int patternPositionIdx = 0;
@@ -115,6 +115,7 @@ namespace PokingExp
         public void setExp1training(SerialPort port, int pokingDepthIdx, bool sensorySaltation, int spatialPattern)
         {
             serialPort1 = port;
+            /*
             depth = depthCond[pokingDepthIdx];
             if (depth == 1)
             {
@@ -135,6 +136,8 @@ namespace PokingExp
             {
                 pullTime = 80;
             }
+            */
+            pullTime = (depth + 0.25f) / pokeSpeed;
             ssFlag = sensorySaltation;
             spIdx = spatialPattern;
             lineFlag = (spatialPattern == 0);

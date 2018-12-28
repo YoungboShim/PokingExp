@@ -138,7 +138,7 @@ namespace PokingExp
         private void buttonCalibration_Click(object sender, EventArgs e)
         {
             Calibration calibProgram = new Calibration();
-            calibProgram.setCalibration(serialPort1);
+            calibProgram.setCalibration(serialPort1, textBoxLogID.Text);
             calibProgram.Show();
             calibProgram.Focus();
         }

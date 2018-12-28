@@ -56,7 +56,7 @@ namespace PokingExp
         int patternNum = 4;
         int repeatNum = 12;
         int[] stimuli;
-        int depth = 20;
+        float depth = 1.5f;
         int duration = 250;
         int pullDuration = 100;
         int patternPositionIdx = 0;
@@ -87,7 +87,8 @@ namespace PokingExp
         public void setExp1Main(SerialPort port, int pokingDepthIdx, bool sensorySaltation, int spatialPattern, int blockNum, string logID)
         {
             serialPort1 = port;
-            depth = depthCond[pokingDepthIdx];
+            //depth = depthCond[pokingDepthIdx];
+            /*
             if (depth == 1)
             {
                 serialPort1.WriteLine("q");
@@ -107,6 +108,8 @@ namespace PokingExp
             {
                 pullTime = 80;
             }
+            */
+            pullTime = (depth + 0.25f) / pokeSpeed;
             userID = logID;
             ssFlag = sensorySaltation;
             spIdx = spatialPattern;
