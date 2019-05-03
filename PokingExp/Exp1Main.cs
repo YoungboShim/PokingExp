@@ -27,18 +27,6 @@ namespace PokingExp
                                     {"p3", "p2", "p1" },
                                     {"p2", "p5", "p8" },
                                     {"p8", "p5", "p2" } } };
-                                    /*{ { {"m4", "m5", "m6" },
-                                    {"m6", "m5", "m4" },
-                                    {"m2", "m5", "m8" },
-                                    {"m8", "m5", "m2" } },
-                                  { {"m7", "m8", "m9" },
-                                    {"m9", "m8", "m7" },
-                                    {"m2", "m5", "m8" },
-                                    {"m8", "m5", "m2" } },
-                                  { {"m1", "m2", "m3" },
-                                    {"m3", "m2", "m1" },
-                                    {"m2", "m5", "m8" },
-                                    {"m8", "m5", "m2" } } };*/
         static string[,,] patternLineCmd = { { {"p7", "p4", "p1" },
                                         {"p8", "p5", "p2" },
                                         {"p9", "p6", "p3" } },
@@ -60,6 +48,7 @@ namespace PokingExp
         int duration = 250;
         int pullDuration = 100;
         int patternPositionIdx = 0;
+        int maxOnsetDelay = 2000;
         float pokeSpeed = 0.06f; // mm/ms
         float pullTime;
         pattern currPattern = pattern.up;
@@ -151,6 +140,7 @@ namespace PokingExp
         private void playPattern()
         {
             int tmpIdx;
+
             if (ssFlag)
             {
                 tmpIdx = patternPositionIdx / 2;
@@ -162,16 +152,12 @@ namespace PokingExp
             if (lineFlag)
             {
                 serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 0]);
-                //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 0]);
                 serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 1]);
-                //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 1]);
                 serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 2]);
-                //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 2]);
             }
             else
             {
                 serialPort1.WriteLine(patternCmd[(spIdx - 1), (int)currPattern, tmpIdx]);
-                //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, tmpIdx]);
             }
             timerPull.Enabled = true;
             timerDuration.Enabled = true;
@@ -190,6 +176,8 @@ namespace PokingExp
             currPattern = (pattern)stimuli[stimuliIdx++];
             buttonPlay.Enabled = false;
             labelWait.Text = "Playing";
+            Random random = new Random();
+            Delay(random.Next(maxOnsetDelay));
             playPattern();            
         }
 
@@ -208,16 +196,12 @@ namespace PokingExp
             if (lineFlag)
             {
                 serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 0]);
-                //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 0]);
                 serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 1]);
-                //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 1]);
                 serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 2]);
-                //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 2]);
             }
             else
             {
                 serialPort1.WriteLine(patternCmd[(spIdx - 1), (int)currPattern, tmpIdx]);
-                //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, tmpIdx]);
             }
             patternPositionIdx++;
             timerPull.Enabled = false;
@@ -255,7 +239,6 @@ namespace PokingExp
 
         private void timerSS_Tick(object sender, EventArgs e)
         {
-            //Console.Write("S");
             int tmpIdx;
             if (ssFlag)
             {
@@ -270,16 +253,12 @@ namespace PokingExp
                 if (lineFlag)
                 {
                     serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 0]);
-                    //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 0]);
                     serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 1]);
-                    //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 1]);
                     serialPort1.WriteLine(patternLineCmd[(int)currPattern, tmpIdx, 2]);
-                    //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, 2]);
                 }
                 else
                 {
                     serialPort1.WriteLine(patternCmd[(spIdx - 1), (int)currPattern, tmpIdx]);
-                    //Console.Write(patternLineCmd[(int)currPattern, tmpIdx, tmpIdx]);
                 }
                 
             }

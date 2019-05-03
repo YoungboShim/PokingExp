@@ -48,6 +48,7 @@ namespace PokingExp
         int pullDuration = 100;
         int patternPositionIdx = 0;
         int spIdx = 0;
+        int maxOnsetDelay = 2000;
         float pokeSpeed = 0.06f;
         float pullTime;
         pattern currPattern = pattern.up;
@@ -83,6 +84,7 @@ namespace PokingExp
         private void playPattern()
         {
             int tmpIdx;
+
             if (ssFlag)
             {
                 tmpIdx = patternPositionIdx / 2;
@@ -359,6 +361,8 @@ namespace PokingExp
                 buttonPlay.Enabled = false;
                 answerMode = true;
                 labelWait.Text = "Playing";
+                Random random = new Random();
+                Delay(random.Next(maxOnsetDelay));
                 playPattern();
             }
         }
