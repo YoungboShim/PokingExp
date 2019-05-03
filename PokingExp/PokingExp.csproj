@@ -64,46 +64,19 @@
     <Compile Include="Exp1Training.Designer.cs">
       <DependentUpon>Exp1Training.cs</DependentUpon>
     </Compile>
-    <Compile Include="Exp1Vib.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Exp1Vib.Designer.cs">
-      <DependentUpon>Exp1Vib.cs</DependentUpon>
-    </Compile>
     <Compile Include="ExpManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExpManager.Designer.cs">
       <DependentUpon>ExpManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainTask.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainTask.Designer.cs">
-      <DependentUpon>MainTask.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecondaryTask.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SecondaryTask.Designer.cs">
-      <DependentUpon>SecondaryTask.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VibTraining.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VibTraining.Designer.cs">
-      <DependentUpon>VibTraining.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Calibration.resx">
       <DependentUpon>Calibration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Exp1Main.resx">
       <DependentUpon>Exp1Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Exp1Vib.resx">
-      <DependentUpon>Exp1Vib.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExpManager.resx">
       <DependentUpon>ExpManager.cs</DependentUpon>
@@ -120,12 +93,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SecondaryTask.resx">
-      <DependentUpon>SecondaryTask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VibTraining.resx">
-      <DependentUpon>VibTraining.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

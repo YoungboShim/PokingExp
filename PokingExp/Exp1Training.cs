@@ -26,18 +26,6 @@ namespace PokingExp
                                     {"p3", "p2", "p1" },
                                     {"p2", "p5", "p8" },
                                     {"p8", "p5", "p2" } } };
-                                /*{ { {"m4", "m5", "m6" },
-                                    {"m6", "m5", "m4" },
-                                    {"m2", "m5", "m8" },
-                                    {"m8", "m5", "m2" } },
-                                  { {"m7", "m8", "m9" },
-                                    {"m9", "m8", "m7" },
-                                    {"m2", "m5", "m8" },
-                                    {"m8", "m5", "m2" } },
-                                  { {"m1", "m2", "m3" },
-                                    {"m3", "m2", "m1" },
-                                    {"m2", "m5", "m8" },
-                                    {"m8", "m5", "m2" } } };*/
         string[,,] patternLineCmd = { { {"p7", "p4", "p1" },
                                         {"p8", "p5", "p2" },
                                         {"p9", "p6", "p3" } },
@@ -50,18 +38,7 @@ namespace PokingExp
                                       { {"p9", "p8", "p7" },
                                         {"p6", "p5", "p4" },
                                         {"p3", "p2", "p1" } } };
-                                    /*{ { {"m7", "m4", "m1" },
-                                        {"m8", "m5", "m2" },
-                                        {"m9", "m6", "m3" } },
-                                      { {"m9", "m6", "m3" },
-                                        {"m8", "m5", "m2" },
-                                        {"m7", "m4", "m1" } },
-                                      { {"m3", "m2", "m1" },
-                                        {"m6", "m5", "m4" },
-                                        {"m9", "m8", "m7" } },
-                                      { {"m9", "m8", "m7" },
-                                        {"m6", "m5", "m4" },
-                                        {"m3", "m2", "m1" } } };*/
+
         int[] depthCond = { 1, 2, 3, 4 };   // depth condition
         int patternNum = 4;
         int repeatNum = 12;
@@ -84,25 +61,6 @@ namespace PokingExp
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
-            /*
-            buttonUp.PreviewKeyDown += button_PreviewKeyDown;
-            buttonDown.PreviewKeyDown += button_PreviewKeyDown;
-            buttonLeft.PreviewKeyDown += button_PreviewKeyDown;
-            buttonRight.PreviewKeyDown += button_PreviewKeyDown;
-            buttonPlay.PreviewKeyDown += button_PreviewKeyDown;
-
-            buttonUp.KeyDown += button_KeyDown;
-            buttonDown.KeyDown += button_KeyDown;
-            buttonLeft.KeyDown += button_KeyDown;
-            buttonRight.KeyDown += button_KeyDown;
-            buttonPlay.KeyDown += button_KeyDown;
-
-            buttonUp.KeyPress += button_KeyPress;
-            buttonDown.KeyPress += button_KeyPress;
-            buttonLeft.KeyPress += button_KeyPress;
-            buttonRight.KeyPress += button_KeyPress;
-            buttonPlay.KeyPress += button_KeyPress;
-            */
 
             labelWait.Text = "";
         }
@@ -112,31 +70,9 @@ namespace PokingExp
             serialPort1 = port;
         }
 
-        public void setExp1training(SerialPort port, int pokingDepthIdx, bool sensorySaltation, int spatialPattern)
+        public void setExp1training(SerialPort port, bool sensorySaltation, int spatialPattern)
         {
             serialPort1 = port;
-            /*
-            depth = depthCond[pokingDepthIdx];
-            if (depth == 1)
-            {
-                serialPort1.WriteLine("q");
-                pullTime = (depth + 0.25f) / pokeSpeed;
-            }
-            else if (depth == 2)
-            {
-                serialPort1.WriteLine("w");
-                pullTime = (depth + 0.25f) / pokeSpeed;
-            }
-            else if (depth == 3)
-            {
-                serialPort1.WriteLine("e");
-                pullTime = (depth + 0.25f) / pokeSpeed;
-            }
-            else if (depth == 4)
-            {
-                pullTime = 80;
-            }
-            */
             pullTime = (depth + 0.25f) / pokeSpeed;
             ssFlag = sensorySaltation;
             spIdx = spatialPattern;

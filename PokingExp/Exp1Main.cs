@@ -84,31 +84,9 @@ namespace PokingExp
             randomizeStimuli();
         }
 
-        public void setExp1Main(SerialPort port, int pokingDepthIdx, bool sensorySaltation, int spatialPattern, int blockNum, string logID)
+        public void setExp1Main(SerialPort port, bool sensorySaltation, int spatialPattern, int blockNum, string logID)
         {
             serialPort1 = port;
-            //depth = depthCond[pokingDepthIdx];
-            /*
-            if (depth == 1)
-            {
-                serialPort1.WriteLine("q");
-                pullTime = (depth + 0.25f) / pokeSpeed;
-            }
-            else if (depth == 2)
-            {
-                serialPort1.WriteLine("w");
-                pullTime = (depth + 0.25f) / pokeSpeed;
-            }
-            else if (depth == 3)
-            {
-                serialPort1.WriteLine("e");
-                pullTime = (depth + 0.25f) / pokeSpeed;
-            }
-            else if (depth == 4)
-            {
-                pullTime = 80;
-            }
-            */
             pullTime = (depth + 0.25f) / pokeSpeed;
             userID = logID;
             ssFlag = sensorySaltation;

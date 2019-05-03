@@ -13,12 +13,6 @@ namespace PokingExp
 {
     public partial class ExpManager : Form
     {
-        int[] depthCond = { 1, 2, 3 };   // depth condition
-        string[] ssCond = { "X", "O" };   // sensory saltation condition
-        string[] spCond = { "line", "point", "leftmost", "rightmost" }; // spatial pattern condition
-        int depth = 20;
-        int duration = 100;
-
         public ExpManager()
         {
             InitializeComponent();
@@ -29,6 +23,7 @@ namespace PokingExp
         {
             // Get available ports
             String[] ports = SerialPort.GetPortNames();
+
             // Display ports in combobox
             comboBoxSerials.Items.Clear();
             comboBoxSerials.Items.AddRange(ports);
@@ -55,10 +50,9 @@ namespace PokingExp
                     serialPort1.Open();
                 string line = serialPort1.ReadExisting();
                 Console.WriteLine("Start");
-                if (line == "Ready for command...")
+                if (line == "Poke-Vibration Multimodal Tactile Display...")
                     buttonConnect.BackColor = Color.Orange;
                 panelStart.Enabled = true;
-                panelStart2.Enabled = true;
             }
             else
             {
@@ -69,69 +63,19 @@ namespace PokingExp
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            int depthIdx = comboBoxDepth.SelectedIndex;
-            int spIdx = comboBoxSpatial.SelectedIndex;
             int block = comboBoxBlock.SelectedIndex + 1;
-            bool ss;
-            if (comboBoxSS.SelectedIndex == 0)
-                ss = false;
-            else
-                ss = true;
+
             if (comboBoxTrainMain.SelectedIndex == 0)
             {
                 Exp1Training program = new Exp1Training();
-                program.setExp1training(serialPort1, depthIdx, ss, spIdx);
+                program.setExp1training(serialPort1, true, 1);
                 program.Show();
             }
             else if (comboBoxTrainMain.SelectedIndex == 1)
             {
                 Exp1Main programMain = new Exp1Main();
-                programMain.setExp1Main(serialPort1, depthIdx, ss, spIdx, block, textBoxLogID.Text);
+                programMain.setExp1Main(serialPort1, true, 1, block, textBoxLogID.Text);
                 programMain.Show();
-            }
-            else if (comboBoxTrainMain.SelectedIndex == 2)
-            {
-                VibTraining programVibT = new VibTraining();
-                programVibT.setVibTraining(serialPort1, true, ss, spIdx);
-                programVibT.Show();
-            }
-            else if(comboBoxTrainMain.SelectedIndex == 3)
-            {
-                Exp1Vib programVibM = new Exp1Vib();
-                programVibM.setExp1Vib(serialPort1, block, textBoxLogID.Text);
-                programVibM.Show();
-            }
-        }
-
-        private void buttonStart2_Click(object sender, EventArgs e)
-        {
-            String logID = textBoxID2.Text;
-            bool tactileOn = true, pokeOn = true;
-            int difficultyNum = 0;
-
-            if (comboBoxLevel.SelectedIndex == 0)
-                difficultyNum = 0;
-            else if (comboBoxLevel.SelectedIndex == 1)
-                difficultyNum = 16;
-            else if (comboBoxLevel.SelectedIndex == 2)
-                difficultyNum = 36;
-
-            if (comboBoxTactile.SelectedIndex == 0)
-                tactileOn = false;
-            else if (comboBoxTactile.SelectedIndex == 1)
-                pokeOn = true;
-            else if (comboBoxTactile.SelectedIndex == 2)
-                pokeOn = false;
-
-            MainTask mainProgram = new MainTask();
-            mainProgram.Start(difficultyNum, "Exp3_" + logID + "_" + difficultyNum.ToString() + "_" + comboBoxTactile.SelectedIndex.ToString() + ".txt");
-            mainProgram.Show();
-            if (tactileOn)
-            {
-                SecondaryTask secProgram = new SecondaryTask();
-                secProgram.setSecondaryTask(serialPort1, pokeOn, logID, comboBoxLevel.SelectedIndex);
-                secProgram.Show();
-                secProgram.Focus();
             }
         }
 
