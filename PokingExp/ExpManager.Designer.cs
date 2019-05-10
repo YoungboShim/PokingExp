@@ -37,13 +37,13 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.textBoxLogID = new System.Windows.Forms.TextBox();
             this.panelStart = new System.Windows.Forms.Panel();
+            this.buttonReplace = new System.Windows.Forms.Button();
             this.buttonCalibration = new System.Windows.Forms.Button();
             this.comboBoxBlock = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxTrainMain = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonReplace = new System.Windows.Forms.Button();
             this.panelSerial.SuspendLayout();
             this.panelStart.SuspendLayout();
             this.SuspendLayout();
@@ -120,6 +120,16 @@
             this.panelStart.Size = new System.Drawing.Size(354, 68);
             this.panelStart.TabIndex = 25;
             // 
+            // buttonReplace
+            // 
+            this.buttonReplace.Location = new System.Drawing.Point(100, 32);
+            this.buttonReplace.Name = "buttonReplace";
+            this.buttonReplace.Size = new System.Drawing.Size(75, 23);
+            this.buttonReplace.TabIndex = 26;
+            this.buttonReplace.Text = "Init";
+            this.buttonReplace.UseVisualStyleBackColor = true;
+            this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
+            // 
             // buttonCalibration
             // 
             this.buttonCalibration.Location = new System.Drawing.Point(181, 32);
@@ -178,16 +188,6 @@
             this.label1.Size = new System.Drawing.Size(20, 15);
             this.label1.TabIndex = 25;
             this.label1.Text = "ID";
-            // 
-            // buttonReplace
-            // 
-            this.buttonReplace.Location = new System.Drawing.Point(100, 32);
-            this.buttonReplace.Name = "buttonReplace";
-            this.buttonReplace.Size = new System.Drawing.Size(75, 23);
-            this.buttonReplace.TabIndex = 26;
-            this.buttonReplace.Text = "Replace";
-            this.buttonReplace.UseVisualStyleBackColor = true;
-            this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
             // 
             // ExpManager
             // 
