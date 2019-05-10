@@ -13,6 +13,7 @@ namespace PokingExp
 {
     public partial class ExpManager : Form
     {
+        private bool tactorOut = false;
         public ExpManager()
         {
             InitializeComponent();
@@ -85,6 +86,20 @@ namespace PokingExp
             calibProgram.setCalibration(serialPort1, textBoxLogID.Text);
             calibProgram.Show();
             calibProgram.Focus();
+        }
+
+        private void buttonReplace_Click(object sender, EventArgs e)
+        {
+            if(tactorOut)
+            {
+                serialPort1.WriteLine("z");
+                tactorOut = false;
+            }
+            else
+            {
+                serialPort1.WriteLine("r");
+                tactorOut = true;
+            }
         }
     }
 }

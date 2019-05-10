@@ -43,6 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxTrainMain = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonReplace = new System.Windows.Forms.Button();
             this.panelSerial.SuspendLayout();
             this.panelStart.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +106,7 @@
             // 
             // panelStart
             // 
+            this.panelStart.Controls.Add(this.buttonReplace);
             this.panelStart.Controls.Add(this.buttonCalibration);
             this.panelStart.Controls.Add(this.comboBoxBlock);
             this.panelStart.Controls.Add(this.label5);
@@ -177,6 +179,16 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "ID";
             // 
+            // buttonReplace
+            // 
+            this.buttonReplace.Location = new System.Drawing.Point(100, 32);
+            this.buttonReplace.Name = "buttonReplace";
+            this.buttonReplace.Size = new System.Drawing.Size(75, 23);
+            this.buttonReplace.TabIndex = 26;
+            this.buttonReplace.Text = "Replace";
+            this.buttonReplace.UseVisualStyleBackColor = true;
+            this.buttonReplace.Click += new System.EventHandler(this.buttonReplace_Click);
+            // 
             // ExpManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -209,6 +221,7 @@
         private System.Windows.Forms.ComboBox comboBoxBlock;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonCalibration;
+        private System.Windows.Forms.Button buttonReplace;
     }
 }
 
