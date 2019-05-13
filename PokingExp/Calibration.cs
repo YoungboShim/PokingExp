@@ -64,7 +64,7 @@ namespace PokingExp
                 serialPort1.WriteLine(String.Format("t{0}{1:d2}", moduleIdx + 1, ++idlePos[moduleIdx]));
                 Console.WriteLine(serialPort1.ReadLine());
             }
-            if (idlePos[moduleIdx] >= 100)
+            if (idlePos[moduleIdx] >= 70)
                 downBtns[moduleIdx].Enabled = false;
             if (idlePos[moduleIdx] > 0)
                 upBtns[moduleIdx].Enabled = true;
@@ -77,7 +77,7 @@ namespace PokingExp
                 serialPort1.WriteLine(String.Format("t{0}{1:d2}", moduleIdx + 1, --idlePos[moduleIdx]));
                 Console.WriteLine(serialPort1.ReadLine());
             }
-            if (idlePos[moduleIdx] < 100)
+            if (idlePos[moduleIdx] < 70)
                 downBtns[moduleIdx].Enabled = true;
             if (idlePos[moduleIdx] <= 0)
                 upBtns[moduleIdx].Enabled = false;

@@ -145,7 +145,8 @@
             this.comboBoxBlock.FormattingEnabled = true;
             this.comboBoxBlock.Items.AddRange(new object[] {
             "1",
-            "2"});
+            "2",
+            "3"});
             this.comboBoxBlock.Location = new System.Drawing.Point(307, 3);
             this.comboBoxBlock.Name = "comboBoxBlock";
             this.comboBoxBlock.Size = new System.Drawing.Size(40, 23);
