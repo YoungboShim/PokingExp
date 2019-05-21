@@ -45,7 +45,7 @@ namespace PokingExp
         int repeatNum = 12;
         int[] stimuli;
         float depth = 1.5f;
-        int duration = 250;
+        float duration = 250;
         int pullDuration = 100;
         int patternPositionIdx = 0;
         int maxOnsetDelay = 2000;
@@ -55,6 +55,7 @@ namespace PokingExp
         bool ssFlag = false;
         bool lineFlag = false;
         int spIdx = 0;
+        int shortLongIdx;   // short : 0, long : 1
         int stimuliIdx = 0;
         long timeStart = 0, timeEnd = 0;
         long timeAsk = 0, timeAnswer = 0;
@@ -73,7 +74,7 @@ namespace PokingExp
             randomizeStimuli();
         }
 
-        public void setExp1Main(SerialPort port, bool sensorySaltation, int spatialPattern, int blockNum, string logID)
+        public void setExp1Main(SerialPort port, bool sensorySaltation, int spatialPattern, int blockNum, string logID, int shortLong)
         {
             serialPort1 = port;
             pullTime = (depth + 0.25f) / pokeSpeed;
@@ -82,9 +83,22 @@ namespace PokingExp
             spIdx = spatialPattern;
             block = blockNum;
             lineFlag = (spatialPattern == 0);
+            shortLongIdx = shortLong;
+
+            if (shortLongIdx == 0)
+            {
+                duration = ((depth + 0.25f) / pokeSpeed) * 4;
+            }
+            else if (shortLongIdx == 1)
+            {
+                ssFlag = false;
+                duration = ((depth + 0.25f) / pokeSpeed) * 4;
+                pullTime = ((depth + 0.25f) / pokeSpeed) * 3;
+            }
             timerPull.Interval = (int)pullTime;
             timerDuration.Interval = (int)duration;
             timerSS.Interval = (int)(duration / 2);
+
             Console.WriteLine("Pull: " + pullTime.ToString() + ", Duration: " + duration.ToString());
             if (depth > 3)
             {

@@ -64,17 +64,18 @@ namespace PokingExp
         private void buttonStart_Click(object sender, EventArgs e)
         {
             int block = comboBoxBlock.SelectedIndex + 1;
+            int shortLong = comboBoxShortLong.SelectedIndex;    // short : 0, long : 1
 
             if (comboBoxTrainMain.SelectedIndex == 0)
             {
                 Exp1Training program = new Exp1Training();
-                program.setExp1training(serialPort1, true, 1);
+                program.setExp1training(serialPort1, true, 1, shortLong);
                 program.Show();
             }
             else if (comboBoxTrainMain.SelectedIndex == 1)
             {
                 Exp1Main programMain = new Exp1Main();
-                programMain.setExp1Main(serialPort1, true, 1, block, textBoxLogID.Text);
+                programMain.setExp1Main(serialPort1, true, 1, block, textBoxLogID.Text, shortLong);
                 programMain.Show();
             }
         }
@@ -90,6 +91,16 @@ namespace PokingExp
         private void buttonReplace_Click(object sender, EventArgs e)
         {
             serialPort1.WriteLine("z");
+        }
+
+        private void comboBoxBlock_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxShortLong_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

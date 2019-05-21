@@ -44,10 +44,11 @@ namespace PokingExp
         int repeatNum = 12;
         int conditionNum;
         float depth = 1.5f;
-        int duration = 250;
+        float duration = 250;
         int pullDuration = 100;
         int patternPositionIdx = 0;
         int spIdx = 0;
+        int shortLongIdx = 0;   // short : 0, long : 1
         int maxOnsetDelay = 2000;
         float pokeSpeed = 0.06f;
         float pullTime;
@@ -64,6 +65,7 @@ namespace PokingExp
             this.WindowState = FormWindowState.Maximized;
 
             labelWait.Text = "";
+            
         }
 
         public void getSerialPort(SerialPort port)
@@ -71,7 +73,7 @@ namespace PokingExp
             serialPort1 = port;
         }
 
-        public void setExp1training(SerialPort port, bool sensorySaltation, int spatialPattern)
+        public void setExp1training(SerialPort port, bool sensorySaltation, int spatialPattern, int shortLong)
         {
             serialPort1 = port;
             pullTime = (depth + 0.25f) / pokeSpeed;
@@ -79,6 +81,18 @@ namespace PokingExp
             spIdx = spatialPattern;
             lineFlag = (spatialPattern == 0);
             timerTraining.Enabled = true;
+            shortLongIdx = shortLong;
+            if (shortLongIdx == 0)
+            {
+                duration = ((depth + 0.25f) / pokeSpeed) * 4;
+            }
+            else if (shortLongIdx == 1)
+            {
+                ssFlag = false;
+                duration = ((depth + 0.25f) / pokeSpeed) * 4;
+                pullTime = ((depth + 0.25f) / pokeSpeed) * 3;
+            }
+
         }
 
         private void playPattern()
@@ -456,6 +470,11 @@ namespace PokingExp
         private void Exp1Training_KeyDown(object sender, KeyEventArgs e)
         {
             button_KeyDown(sender, e);
+        }
+
+        private void Exp1Training_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
