@@ -63,6 +63,8 @@ namespace PokingExp
         string userID;
         int block = 1;
 
+        float[] velDurationCond = { 58.33f, 145.86f, 233.53f }; // fastest V (motor doesn't rest), V/2, V/3
+
         public Exp1Main()
         {
             InitializeComponent();
@@ -74,7 +76,7 @@ namespace PokingExp
             randomizeStimuli();
         }
 
-        public void setExp1Main(SerialPort port, bool sensorySaltation, int spatialPattern, int blockNum, string logID, int shortLong)
+        public void setExp1Main(SerialPort port, bool sensorySaltation, int spatialPattern, int blockNum, string logID, int shortLong, int velocity)
         {
             serialPort1 = port;
             pullTime = (depth + 0.25f) / pokeSpeed;
@@ -94,6 +96,12 @@ namespace PokingExp
                 ssFlag = false;
                 duration = ((depth + 0.25f) / pokeSpeed) * 4;
                 pullTime = ((depth + 0.25f) / pokeSpeed) * 3;
+            }
+            else if (shortLongIdx == 2)
+            {
+                ssFlag = false;
+                pullTime = (depth + 0.25f) / pokeSpeed;
+                duration = velDurationCond[velocity];
             }
             timerPull.Interval = (int)pullTime;
             timerDuration.Interval = (int)duration;

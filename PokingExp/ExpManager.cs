@@ -65,17 +65,18 @@ namespace PokingExp
         {
             int block = comboBoxBlock.SelectedIndex + 1;
             int shortLong = comboBoxShortLong.SelectedIndex;    // short : 0, long : 1
+            int velNum = comboBoxVelocity.SelectedIndex;
 
             if (comboBoxTrainMain.SelectedIndex == 0)
             {
                 Exp1Training program = new Exp1Training();
-                program.setExp1training(serialPort1, true, 1, shortLong);
+                program.setExp1training(serialPort1, true, 1, shortLong, velNum);
                 program.Show();
             }
             else if (comboBoxTrainMain.SelectedIndex == 1)
             {
                 Exp1Main programMain = new Exp1Main();
-                programMain.setExp1Main(serialPort1, true, 1, block, textBoxLogID.Text, shortLong);
+                programMain.setExp1Main(serialPort1, true, 1, block, textBoxLogID.Text, shortLong, velNum);
                 programMain.Show();
             }
         }
