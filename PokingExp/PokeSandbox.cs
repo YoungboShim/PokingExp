@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace PokingExp
@@ -22,6 +23,9 @@ namespace PokingExp
 
         static int nofLab = 5;
         string[] tnumList = new string[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        Series[] tactorSeries = new Series[9];
+
+        double pokeSpeed = 0.05f;    // mm/ms
 
         public PokeSandbox()
         {
@@ -74,6 +78,13 @@ namespace PokingExp
             textBoxDepth.Dispose();
             buttonDel.Dispose();
 
+            chartTimeline.Series.Clear();
+            for (int i = 0; i < 9; i++)
+            {
+                tactorSeries[i] = chartTimeline.Series.Add("t" + i.ToString());
+                tactorSeries[i].ChartType = SeriesChartType.Line;
+            }
+
             renewAll();
         }
 
@@ -92,9 +103,13 @@ namespace PokingExp
             panel1.Controls.Add(delBtns[rowIdx]);
 
             numCombos[rowIdx].Items.AddRange(tnumList);
-            delBtns[rowIdx].Click += buttonDel_Click;
             onsetInputs[rowIdx].Text = "";
             depthInputs[rowIdx].Text = "";
+
+            delBtns[rowIdx].Click += buttonDel_Click;
+            numCombos[rowIdx].TabIndexChanged += controlChanged;
+            onsetInputs[rowIdx].TextChanged += controlChanged;
+            depthInputs[rowIdx].TextChanged += controlChanged;
 
             renewAll();
         }
@@ -142,6 +157,7 @@ namespace PokingExp
                 delBtns.RemoveAt(rowIdx);
 
                 renewAll();
+                redrawChart();
             }
         }
 
@@ -165,6 +181,38 @@ namespace PokingExp
                 delBtns[row].Show();
             }
             this.Refresh();
+        }
+
+        private void redrawChart()
+        {
+            int nofRow = numCombos.Count();
+
+            for(int i=0;i<9;i++)
+            {
+                tactorSeries[i].Points.Clear();
+            }
+
+            for(int row = 1; row<nofRow;row++)
+            {
+                if (numCombos[row].Text != "" && onsetInputs[row].Text != "" && depthInputs[row].Text != "")
+                {
+                    int tNum = Int32.Parse(numCombos[row].Text) - 1;
+                    double onset = Convert.ToDouble(onsetInputs[row].Text);
+                    double depth = Convert.ToDouble(depthInputs[row].Text);
+
+                    // onset point
+                    tactorSeries[tNum].Points.AddXY(onset, 0.0);
+                    // peak
+                    tactorSeries[tNum].Points.AddXY(onset + depth / pokeSpeed, depth);
+                    // 0 again
+                    tactorSeries[tNum].Points.AddXY(onset + 2 * depth / pokeSpeed, 0);
+                }
+            }
+        }
+
+        private void controlChanged(object sender, EventArgs e)
+        {
+            redrawChart();
         }
     }
 }
