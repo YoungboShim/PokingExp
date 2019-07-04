@@ -72,6 +72,7 @@
     <Compile Include="ExpManager.Designer.cs">
       <DependentUpon>ExpManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="PokeCmdSend.cs" />
     <Compile Include="PokeSandbox.cs">
       <SubType>Form</SubType>
     </Compile>

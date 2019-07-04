@@ -28,6 +28,8 @@ namespace PokingExp
 
         double pokeSpeed = 0.04f;    // mm/ms
 
+        PokeCmdSend pokeCmdSend;
+
         public PokeSandbox()
         {
             InitializeComponent();
@@ -92,6 +94,7 @@ namespace PokingExp
         public void setSerialPort(SerialPort sp)
         {
             serialPort1 = sp;
+            pokeCmdSend = new PokeCmdSend(sp);
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -223,6 +226,7 @@ namespace PokingExp
 
         private void buttonPlay_Click(object sender, EventArgs e)
         {
+            /*
             int nofRow = numCombos.Count() - 1;
 
             Timer[] onsetTimer = new Timer[nofRow];
@@ -248,6 +252,9 @@ namespace PokingExp
                     pullTimer[row - 1].Enabled = true;
                 }
             }
+            */
+            buttonExport.PerformClick();
+            pokeCmdSend.playCmd(textBoxOut.Text);
         }
 
         private void TimerEventProcessor(Object sender, EventArgs e, int tNum, double depth)
