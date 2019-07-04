@@ -37,6 +37,8 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.textBoxLogID = new System.Windows.Forms.TextBox();
             this.panelStart = new System.Windows.Forms.Panel();
+            this.comboBoxVelocity = new System.Windows.Forms.ComboBox();
+            this.labelVelocity = new System.Windows.Forms.Label();
             this.comboBoxShortLong = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.buttonReplace = new System.Windows.Forms.Button();
@@ -46,8 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxTrainMain = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelVelocity = new System.Windows.Forms.Label();
-            this.comboBoxVelocity = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelSerial.SuspendLayout();
             this.panelStart.SuspendLayout();
             this.SuspendLayout();
@@ -134,6 +135,28 @@
             this.panelStart.Name = "panelStart";
             this.panelStart.Size = new System.Drawing.Size(633, 68);
             this.panelStart.TabIndex = 25;
+            // 
+            // comboBoxVelocity
+            // 
+            this.comboBoxVelocity.FormattingEnabled = true;
+            this.comboBoxVelocity.Items.AddRange(new object[] {
+            "V1",
+            "V2",
+            "V3"});
+            this.comboBoxVelocity.Location = new System.Drawing.Point(585, 3);
+            this.comboBoxVelocity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxVelocity.Name = "comboBoxVelocity";
+            this.comboBoxVelocity.Size = new System.Drawing.Size(45, 23);
+            this.comboBoxVelocity.TabIndex = 43;
+            // 
+            // labelVelocity
+            // 
+            this.labelVelocity.AutoSize = true;
+            this.labelVelocity.Location = new System.Drawing.Point(521, 5);
+            this.labelVelocity.Name = "labelVelocity";
+            this.labelVelocity.Size = new System.Drawing.Size(58, 15);
+            this.labelVelocity.TabIndex = 42;
+            this.labelVelocity.Text = "Velocity";
             // 
             // comboBoxShortLong
             // 
@@ -233,33 +256,22 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "ID";
             // 
-            // labelVelocity
+            // button1
             // 
-            this.labelVelocity.AutoSize = true;
-            this.labelVelocity.Location = new System.Drawing.Point(521, 5);
-            this.labelVelocity.Name = "labelVelocity";
-            this.labelVelocity.Size = new System.Drawing.Size(58, 15);
-            this.labelVelocity.TabIndex = 42;
-            this.labelVelocity.Text = "Velocity";
-            // 
-            // comboBoxVelocity
-            // 
-            this.comboBoxVelocity.FormattingEnabled = true;
-            this.comboBoxVelocity.Items.AddRange(new object[] {
-            "V1",
-            "V2",
-            "V3"});
-            this.comboBoxVelocity.Location = new System.Drawing.Point(585, 3);
-            this.comboBoxVelocity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBoxVelocity.Name = "comboBoxVelocity";
-            this.comboBoxVelocity.Size = new System.Drawing.Size(45, 23);
-            this.comboBoxVelocity.TabIndex = 43;
+            this.button1.Location = new System.Drawing.Point(348, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(81, 23);
+            this.button1.TabIndex = 26;
+            this.button1.Text = "Sandbox";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ExpManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 132);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panelStart);
             this.Controls.Add(this.panelSerial);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -293,6 +305,7 @@
         private System.Windows.Forms.ComboBox comboBoxShortLong;
         private System.Windows.Forms.ComboBox comboBoxVelocity;
         private System.Windows.Forms.Label labelVelocity;
+        private System.Windows.Forms.Button button1;
     }
 }
 

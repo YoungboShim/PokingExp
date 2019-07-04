@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PokeSandbox));
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
@@ -59,6 +60,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonPlay = new System.Windows.Forms.Button();
             this.chartTimeline = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.textBoxLoad = new System.Windows.Forms.TextBox();
+            this.buttonLoad = new System.Windows.Forms.Button();
+            this.textBoxOut = new System.Windows.Forms.TextBox();
+            this.buttonExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartTimeline)).BeginInit();
@@ -68,9 +74,9 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(346, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(331, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(165, 175);
+            this.pictureBox1.Size = new System.Drawing.Size(185, 175);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -203,10 +209,11 @@
             this.buttonPlay.Font = new System.Drawing.Font("Calibri", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPlay.Location = new System.Drawing.Point(557, 110);
             this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(90, 77);
+            this.buttonPlay.Size = new System.Drawing.Size(99, 77);
             this.buttonPlay.TabIndex = 3;
             this.buttonPlay.Text = "▶";
             this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
             // chartTimeline
             // 
@@ -249,11 +256,51 @@
             this.chartTimeline.TabIndex = 4;
             this.chartTimeline.Text = "chartTimeline";
             // 
+            // textBoxLoad
+            // 
+            this.textBoxLoad.Location = new System.Drawing.Point(31, 12);
+            this.textBoxLoad.Name = "textBoxLoad";
+            this.textBoxLoad.Size = new System.Drawing.Size(258, 25);
+            this.textBoxLoad.TabIndex = 10;
+            // 
+            // buttonLoad
+            // 
+            this.buttonLoad.Font = new System.Drawing.Font("Buxton Sketch", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLoad.Location = new System.Drawing.Point(199, 43);
+            this.buttonLoad.Name = "buttonLoad";
+            this.buttonLoad.Size = new System.Drawing.Size(90, 44);
+            this.buttonLoad.TabIndex = 11;
+            this.buttonLoad.Text = "Load";
+            this.buttonLoad.UseVisualStyleBackColor = true;
+            this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
+            // 
+            // textBoxOut
+            // 
+            this.textBoxOut.Location = new System.Drawing.Point(557, 12);
+            this.textBoxOut.Name = "textBoxOut";
+            this.textBoxOut.Size = new System.Drawing.Size(316, 25);
+            this.textBoxOut.TabIndex = 12;
+            // 
+            // buttonExport
+            // 
+            this.buttonExport.Font = new System.Drawing.Font("Buxton Sketch", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonExport.Location = new System.Drawing.Point(557, 43);
+            this.buttonExport.Name = "buttonExport";
+            this.buttonExport.Size = new System.Drawing.Size(99, 44);
+            this.buttonExport.TabIndex = 13;
+            this.buttonExport.Text = "Export";
+            this.buttonExport.UseVisualStyleBackColor = true;
+            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
+            // 
             // PokeSandbox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1730, 683);
+            this.Controls.Add(this.buttonExport);
+            this.Controls.Add(this.textBoxOut);
+            this.Controls.Add(this.buttonLoad);
+            this.Controls.Add(this.textBoxLoad);
             this.Controls.Add(this.chartTimeline);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.panel1);
@@ -266,6 +313,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartTimeline)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -285,5 +333,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTimeline;
+        private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.TextBox textBoxLoad;
+        private System.Windows.Forms.Button buttonLoad;
+        private System.Windows.Forms.TextBox textBoxOut;
+        private System.Windows.Forms.Button buttonExport;
     }
 }

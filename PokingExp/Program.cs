@@ -16,8 +16,7 @@ namespace PokingExp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PokeSandbox());
-            //Application.Run(new MainTask());
+            Application.Run(new ExpManager());
         }
     }
 }

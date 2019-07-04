@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Windows.Forms.DataVisualization.Charting;
-
+using System.IO.Ports;
+using System.IO;
 
 namespace PokingExp
 {
@@ -25,7 +26,7 @@ namespace PokingExp
         string[] tnumList = new string[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
         Series[] tactorSeries = new Series[9];
 
-        double pokeSpeed = 0.05f;    // mm/ms
+        double pokeSpeed = 0.04f;    // mm/ms
 
         public PokeSandbox()
         {
@@ -81,11 +82,16 @@ namespace PokingExp
             chartTimeline.Series.Clear();
             for (int i = 0; i < 9; i++)
             {
-                tactorSeries[i] = chartTimeline.Series.Add("t" + i.ToString());
+                tactorSeries[i] = chartTimeline.Series.Add("t" + (i+1).ToString());
                 tactorSeries[i].ChartType = SeriesChartType.Line;
             }
 
             renewAll();
+        }
+
+        public void setSerialPort(SerialPort sp)
+        {
+            serialPort1 = sp;
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -213,6 +219,91 @@ namespace PokingExp
         private void controlChanged(object sender, EventArgs e)
         {
             redrawChart();
+        }
+
+        private void buttonPlay_Click(object sender, EventArgs e)
+        {
+            int nofRow = numCombos.Count() - 1;
+
+            Timer[] onsetTimer = new Timer[nofRow];
+            Timer[] pullTimer = new Timer[nofRow];
+
+            for (int row = 1; row < nofRow + 1; row++)
+            {
+                if (numCombos[row].Text != "" && onsetInputs[row].Text != "" && depthInputs[row].Text != "")
+                {
+                    int tNum = Int32.Parse(numCombos[row].Text) - 1;
+                    int onset = Convert.ToInt32(onsetInputs[row].Text);
+                    double depth = Convert.ToDouble(depthInputs[row].Text);
+                    if (onset == 0) onset = 1;
+
+                    onsetTimer[row - 1] = new Timer();
+                    onsetTimer[row - 1].Interval = onset;
+                    onsetTimer[row - 1].Tick += (s, ea) => TimerEventProcessor(s, ea, tNum + 1, depth);
+                    onsetTimer[row - 1].Enabled = true;
+
+                    pullTimer[row - 1] = new Timer();
+                    pullTimer[row - 1].Interval = onset + Convert.ToInt32(depth / pokeSpeed);
+                    pullTimer[row - 1].Tick += (s, ea) => TimerEventProcessor(s, ea, tNum + 1, depth);
+                    pullTimer[row - 1].Enabled = true;
+                }
+            }
+        }
+
+        private void TimerEventProcessor(Object sender, EventArgs e, int tNum, double depth)
+        {
+            int depthCmd = Convert.ToInt32(depth * 10);
+            serialPort1.WriteLine("d" + depthCmd.ToString());
+            Console.WriteLine("d" + depthCmd.ToString());
+            serialPort1.WriteLine("p" + tNum.ToString());
+            Console.WriteLine("p" + tNum.ToString());
+
+            Console.WriteLine(serialPort1.ReadExisting());
+
+            ((Timer)sender).Enabled = false;
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            int nofRow = numCombos.Count() - 1;
+            String cmd = "";
+
+            for (int row = 1; row < nofRow + 1; row++)
+            {
+                if (numCombos[row].Text != "" && onsetInputs[row].Text != "" && depthInputs[row].Text != "")
+                {
+                    cmd += numCombos[row].Text + "," + onsetInputs[row].Text + "," + depthInputs[row].Text + ";";
+                }
+            }
+
+            textBoxOut.Text = cmd;
+        }
+
+        private void buttonLoad_Click(object sender, EventArgs e)
+        {
+            String cmd = textBoxLoad.Text;
+
+            int nofRow = numCombos.Count() - 1;
+            for (int row = nofRow; row > 0; row--)
+            {
+                delBtns[row].PerformClick();
+            }
+
+            String[] cmdRows = cmd.Split(';');
+
+            int rowIdx = 1;
+            foreach(String cmdRow in cmdRows)
+            {
+                if (cmdRow == "") break;
+                String[] cmdParam = cmdRow.Split(',');
+                buttonAdd.PerformClick();
+
+                numCombos[rowIdx].Text = cmdParam[0];
+                onsetInputs[rowIdx].Text = cmdParam[1];
+                depthInputs[rowIdx].Text = cmdParam[2];
+
+                rowIdx++;
+            }
         }
     }
 }

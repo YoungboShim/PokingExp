@@ -103,5 +103,13 @@ namespace PokingExp
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PokeSandbox sandbox = new PokeSandbox();
+            sandbox.setSerialPort(serialPort1);
+            sandbox.Show();
+            sandbox.Focus();
+        }
     }
 }
