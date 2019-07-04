@@ -72,6 +72,12 @@
     <Compile Include="ExpManager.Designer.cs">
       <DependentUpon>ExpManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExpParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExpParam.Designer.cs">
+      <DependentUpon>ExpParam.cs</DependentUpon>
+    </Compile>
     <Compile Include="PokeCmdSend.cs" />
     <Compile Include="PokeSandbox.cs">
       <SubType>Form</SubType>
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Exp1Training.resx">
       <DependentUpon>Exp1Training.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExpParam.resx">
+      <DependentUpon>ExpParam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PokeSandbox.resx">
       <DependentUpon>PokeSandbox.cs</DependentUpon>

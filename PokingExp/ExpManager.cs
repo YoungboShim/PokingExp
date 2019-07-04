@@ -63,6 +63,7 @@ namespace PokingExp
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            /*
             int block = comboBoxBlock.SelectedIndex + 1;
             int shortLong = comboBoxShortLong.SelectedIndex;    // short : 0, long : 1
             int velNum = comboBoxVelocity.SelectedIndex;
@@ -79,6 +80,10 @@ namespace PokingExp
                 programMain.setExp1Main(serialPort1, true, 1, block, textBoxLogID.Text, shortLong, velNum);
                 programMain.Show();
             }
+            */
+            ExpParam paramExp = new ExpParam();
+            paramExp.initProgram(serialPort1, textBoxLogID.Text);
+            paramExp.Show();
         }
 
         private void buttonCalibration_Click(object sender, EventArgs e)
