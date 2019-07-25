@@ -45,7 +45,7 @@
             this.labelOrder.Font = new System.Drawing.Font("Buxton Sketch", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelOrder.Location = new System.Drawing.Point(0, 858);
             this.labelOrder.Name = "labelOrder";
-            this.labelOrder.Size = new System.Drawing.Size(122, 54);
+            this.labelOrder.Size = new System.Drawing.Size(120, 54);
             this.labelOrder.TabIndex = 0;
             this.labelOrder.Text = "1 / 140";
             // 
@@ -55,7 +55,7 @@
             this.labelGuide.Font = new System.Drawing.Font("Buxton Sketch", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGuide.Location = new System.Drawing.Point(542, 90);
             this.labelGuide.Name = "labelGuide";
-            this.labelGuide.Size = new System.Drawing.Size(93, 54);
+            this.labelGuide.Size = new System.Drawing.Size(92, 54);
             this.labelGuide.TabIndex = 1;
             this.labelGuide.Text = "Wait";
             // 

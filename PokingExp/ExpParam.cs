@@ -214,7 +214,7 @@ namespace PokingExp
 
         private void buttonLeft_MouseEnter(object sender, EventArgs e)
         {
-            buttonLeft.BackgroundImage = Image.FromFile(@"D:\workspace\PokingExp\PokingExp\left arrow.png");
+            buttonLeft.BackgroundImage = Image.FromFile(@"D:\workspace\PokingExp\PokingExp\left hover.png");
         }
 
         private void buttonLeft_MouseLeave(object sender, EventArgs e)

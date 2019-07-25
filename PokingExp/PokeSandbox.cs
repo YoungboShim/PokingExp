@@ -195,6 +195,7 @@ namespace PokingExp
         private void redrawChart()
         {
             int nofRow = numCombos.Count();
+            bool[] IsPoking = new bool[] { false, false, false, false, false, false, false, false, false };
 
             for(int i=0;i<9;i++)
             {
@@ -209,12 +210,18 @@ namespace PokingExp
                     double onset = Convert.ToDouble(onsetInputs[row].Text);
                     double depth = Convert.ToDouble(depthInputs[row].Text);
 
-                    // onset point
-                    tactorSeries[tNum].Points.AddXY(onset, 0.0);
-                    // peak
-                    tactorSeries[tNum].Points.AddXY(onset + depth / pokeSpeed, depth);
-                    // 0 again
-                    tactorSeries[tNum].Points.AddXY(onset + 2 * depth / pokeSpeed, 0);
+                    if (!IsPoking[tNum])
+                    {
+                        tactorSeries[tNum].Points.AddXY(onset, 0.0);
+                        tactorSeries[tNum].Points.AddXY(onset + depth / pokeSpeed, depth);
+                        IsPoking[tNum] = true;
+                    }
+                    else
+                    {
+                        tactorSeries[tNum].Points.AddXY(onset, depth);
+                        tactorSeries[tNum].Points.AddXY(onset + depth / pokeSpeed, 0);
+                        IsPoking[tNum] = false;
+                    }
                 }
             }
         }

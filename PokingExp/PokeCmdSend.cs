@@ -42,11 +42,6 @@ namespace PokingExp
                 onsetTimer[row].Tick += (s, ea) => TimerEventProcessor(s, ea, tNum + 1, depth);
                 onsetTimer[row].Enabled = true;
 
-                pullTimer[row] = new Timer();
-                pullTimer[row].Interval = onset + Convert.ToInt32(depth / pokeSpeed);
-                pullTimer[row].Tick += (s, ea) => TimerEventProcessor(s, ea, tNum + 1, depth);
-                pullTimer[row].Enabled = true;
-
                 row++;
             }
         }
